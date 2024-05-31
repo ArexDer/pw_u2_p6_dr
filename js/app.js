@@ -7,6 +7,7 @@ const estudiantes = [
   { nombre: "Alexis", apellido: "Guanoluisa" },
   { nombre: "Aylin", apellido: "Mero" },
 ];
+
 const app = Vue.createApp({
   //template:`
   //  <h1>Hola Mundo desde VUE.JS</h1>
@@ -21,7 +22,9 @@ const app = Vue.createApp({
     return {
       mensaje: "Hola Mundo PROPIEDAD REACTIVA",
       valor: 7,
-      lista: estudiantes
+      lista: estudiantes,
+      nombre:null,
+      apellido: null
     }
   },
   methods: {
@@ -35,14 +38,38 @@ const app = Vue.createApp({
       this.valor = this.valor + 100;
     },
     agregar(){
+      console.log(this.nombre)
+      console.log(this.apellido)
 
         //Boton que llame un estudiante con su nombre y su apellido QUEMADO
         const nuevo={
-            nombre: "DIEGO",
-            apellido:"RIVAS"
+            nombre: this.nombre,
+            apellido:this.apellido
+
+            
+
         }
         this.lista.unshift(nuevo);
+        this.resetear();
+    },
+    resetear(){
+      this.nombre=null;
+      this.apellido=null;
+    },
+             //Directamente en el argumento yo puedo aplicar DESESTRUCTURACION.
+    agregar2({charCode}){
+
+      //console.log(event)
+      console.log()
+
+     if(charCode !==13)return; //lo quito porque ahora tranquilamente se activa cunado de ENTER.
+     if(this.nombre!==null && this.apellido!==null){
+        this.agregar();
+      }
+     
     }
+
+    //FIN DE METHODS
   },
 });
 
